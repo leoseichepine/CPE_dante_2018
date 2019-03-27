@@ -18,8 +18,13 @@ int init_perfect(char *x, char *y, maze_t *gen)
 {
     char **map;
 
-    gen->x = atoi(x);
-    gen->y = atoi(y);
+    if (my_str_isnum(x) == 0 && my_str_isnum(y) == 0) {
+        printf("%s\n", "error: we don't have numbers");
+        return (84);
+    } else {
+        gen->x = atoi(x);
+        gen->y = atoi(y);
+    }
     map = generate_perfect(gen->x, gen->y, gen);
     create_perfect(map, gen);
     display_map(map);
@@ -32,6 +37,8 @@ char **generate_map(int x, int y, maze_t *gen)
     int j = 0;
     char **map = malloc(sizeof(char *) * (y + 1));
 
+    if (map == NULL)
+        return (NULL);
     while (i < gen->y) {
         map[i] = malloc(sizeof(char) * (x + 1));
         while (j < gen->x) {
@@ -50,8 +57,10 @@ char **generate_map(int x, int y, maze_t *gen)
 
 void display_map(char **map)
 {
-    for (int i = 0; map[i] != NULL; i++)
-        printf("%s\n", map[i]);
+    for (int i = 0; map[i] != NULL; i++) {
+        write(1, map[i], strlen(map[i]));
+        write(1, "\n", 1);
+    }
 }
 
 int main(int argc, char **argv)
@@ -62,7 +71,7 @@ int main(int argc, char **argv)
         return (84);
     if (argc == 3)
         init_imperfect(argv[1], argv[2], gen);
-    if (argc == 4 && (my_strcmp(argv[3], "perfect") == 0))
+    if (argc == 4 && (strcmp(argv[3], "perfect") == 0))
         init_perfect(argv[1], argv[2], gen);
     return (0);
 }

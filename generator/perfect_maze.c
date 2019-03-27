@@ -62,6 +62,8 @@ char **generate_perfect(int x, int y, maze_t *gen)
     int j = 0;
     char **map = malloc(sizeof(char *) * (y + 1));
 
+    if (map == NULL)
+        return (NULL);
     while (i < gen->y) {
         map[i] = malloc(sizeof(char) * (x + 1));
         while (j < gen->x) {
