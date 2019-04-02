@@ -33,6 +33,7 @@ int random_border(int nb);
 int init_perfect(char *x, char *y, maze_t *gen);
 void perfect_alea(char **map, maze_t *gen, int i, int j);
 void perfect_alea2(char **map, maze_t *gen, int i, int j);
+void perfect_alea3(char **map, maze_t *gen, int i, int j);
 void create_perfect(char **map, maze_t *gen);
 void random_perfect(maze_t *gen, char **map, int i, int j);
 char **generate_perfect(int x, int y, maze_t *gen);

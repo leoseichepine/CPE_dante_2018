@@ -5,7 +5,8 @@
 ## makefile
 ##
 
-SRC	=	imperfect_maze.c		\
+SRC	=	generate_map.c			\
+		imperfect_maze.c		\
 		perfect_maze.c			\
 		my_str_isnum.c			\
 		main.c
