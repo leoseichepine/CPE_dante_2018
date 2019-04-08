@@ -29,6 +29,12 @@ char **generate_perfect(int x, int y, maze_t *gen)
     return (map);
 }
 
+void complete_border(maze_t *gen, int i, int j, char **map)
+{
+    if (i == gen->y - 1 || i == 0 || j == 0 || j == gen->x - 1)
+        map[i][j] = '*';
+}
+
 char **generate_map(int x, int y, maze_t *gen)
 {
     int i = 0;
@@ -41,8 +47,7 @@ char **generate_map(int x, int y, maze_t *gen)
         map[i] = malloc(sizeof(char) * (x + 1));
         while (j < gen->x) {
             map[i][j] = 'X';
-            if (i == gen->y - 1 || i == 0 || j == 0 || j == gen->x - 1)
-                map[i][j] = '*';
+            complete_border(gen, i, j, map);
             j++;
         }
         map[i][j] = '\0';

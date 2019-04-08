@@ -27,7 +27,7 @@ void create_imperfect(char **map, maze_t *gen);
 int init_imperfect(char *x, char *y, maze_t *gen);
 void algorithm_imperfect(char **map, int i, int j, maze_t *gen);
 char **generate_map(int x, int y, maze_t *gen);
-void display_map(char **map);
+void display_map(char **map, maze_t *gen);
 int random_number(int nb);
 int random_border(int nb);
 int init_perfect(char *x, char *y, maze_t *gen);

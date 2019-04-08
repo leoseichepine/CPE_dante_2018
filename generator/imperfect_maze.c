@@ -20,7 +20,7 @@ int init_imperfect(char *x, char *y, maze_t *gen)
     }
     map = generate_map(gen->x, gen->y, gen);
     create_imperfect(map, gen);
-    display_map(map);
+    display_map(map, gen);
 }
 
 int random_number(int nb)
@@ -38,7 +38,7 @@ int count_stars(char **map, maze_t *gen, int i, int j)
 
     if (i - 1 >= 0 && map[i - 1][j] == '*')
         count++;
-    if (i + 1 < gen->y && map[i + 1][j] == '*')
+    else if (i + 1 < gen->y && map[i + 1][j] == '*')
         count++;
     if (j - 1 >= 0 && map[i][j - 1] == '*')
         count++;

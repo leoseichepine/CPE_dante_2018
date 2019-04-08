@@ -27,15 +27,16 @@ int init_perfect(char *x, char *y, maze_t *gen)
     }
     map = generate_perfect(gen->x, gen->y, gen);
     create_perfect(map, gen);
-    display_map(map);
+    display_map(map, gen);
     free_map(map);
 }
 
-void display_map(char **map)
+void display_map(char **map, maze_t *gen)
 {
     for (int i = 0; map[i] != NULL; i++) {
         write(1, map[i], strlen(map[i]));
-        write(1, "\n", 1);
+        if (i < gen->y - 1)
+            write(1, "\n", 1);
     }
 }
 
@@ -45,7 +46,7 @@ int main(int argc, char **argv)
 
     if (argc < 3)
         return (84);
-    if (argc == 3)
+    else if (argc == 3)
         init_imperfect(argv[1], argv[2], gen);
     if (argc == 4 && (strcmp(argv[3], "perfect") == 0))
         init_perfect(argv[1], argv[2], gen);
