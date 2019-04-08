@@ -1,27 +1,39 @@
 ##
 ## EPITECH PROJECT, 2018
-## Day10
+## makefile csfml
 ## File description:
-## makefile
+## makefile csfml
 ##
 
-SRC	=
+SRC			=	src/main.c\
+				src/maze/load_maze.c\
+				src/utils/error_handling.c\
+				src/utils/general_1.c
 
-OBJ	=	$(SRC:.c=.o)
+NAME		=	solver
 
-NAME	=	solver
+OBJ			=	$(SRC:.c=.o)
 
-INCLUDE = 	-I./include/my.h
+CFLAGS		=	-Wall -Wextra -Iinclude
 
-all :		$(NAME)
+INCLUDE		=	-I./include/solver.h
 
-$(NAME):	$(OBJ)
-		gcc -g -o $(NAME) $(OBJ) $(INCLUDE)
+LIBFLAGS	=	-Llib/my -lmy
 
-clean:
-		rm -f $(OBJ)
+all			:	$(NAME) clean
 
-fclean:		clean
-		rm -f $(NAME)
+debug		:
+				gcc -o  $(NAME) $(SRC) $(CFLAGS) -g
 
-re: 		fclean all
+$(NAME)		:	$(OBJ)
+				gcc -g -o $(NAME) $(OBJ) $(INCLUDE) $(CFLAGS)
+
+clean		:
+				rm -f $(OBJ)
+
+fclean		:	clean
+				rm -f $(NAME)
+
+re			:	fclean all
+
+.PHONY		:	all clean fclean re
