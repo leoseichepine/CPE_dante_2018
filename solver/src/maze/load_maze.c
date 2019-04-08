@@ -74,35 +74,16 @@ int copy_maze(maze_t *maze, char *path)
     return (1);
 }
 
-int is_valid_line(char *line)
+int load_maze(maze_t *maze, char *path)
 {
-    for (int i = 0; line[i]; i++)
-        if (line[i] != 'X' && line[i] != '*')
-            return (0);
-    return (1);
-}
-
-int check_error_maze(char **maze)
-{
-    for (int i = 0; maze[i]; i++)
-        if (!is_valid_line(maze[i]))
-            return (0);
-    return (1);
-}
-
-int load_maze(solver_t *solver, char *path)
-{
-    solver->maze = malloc(sizeof(maze_t));
-    if (!solver->maze || !get_coord_maze(solver->maze, path))
+    if (!get_coord_maze(maze, path))
         return (0);
-    solver->maze->arr = malloc(sizeof(char *) * (solver->maze->y + 1));
-    if (!solver->maze->arr)
+    maze->arr = malloc(sizeof(char *) * (maze->y + 1));
+    if (!maze->arr)
         return (0);
-    if (!copy_maze(solver->maze, path))
+    if (!copy_maze(maze, path))
         return (0);
-    if (!check_error_maze(solver->maze->arr)) {
-        free_everything(solver);
-        return (0);
-    }
+    if (!check_error_maze(maze->arr))
+        return (free_everything(maze, 0));
     return (1);
 }

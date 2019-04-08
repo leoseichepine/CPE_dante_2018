@@ -24,19 +24,29 @@ typedef struct s_maze
     char **arr;
 } maze_t;
 
+typedef struct s_list
+{
+    int y;
+    int x;
+} list_t;
+
 typedef struct s_solver
 {
-    maze_t *maze;
+    int **arr;
+    list_t *path;
 } solver_t;
 
 int check_open(char *path);
+int is_valid_line(char *line);
+int free_everything(maze_t *maze, int ret);
+int check_error_maze(char **maze);
 int print_array(char **arr);
 int free_array(char **arr);
 int check_args(int ac, char **av);
 int get_y_file(char *path);
 int get_x_file(char *path);
 int get_coord_maze(maze_t *maze, char *path);
-int load_maze(solver_t *solver, char *path);
+int load_maze(maze_t *maze, char *path);
 char *my_strncpy(char *str, int n);
 int my_putchar(char c);
 int my_putstr(char *str);
