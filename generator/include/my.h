@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 #include <time.h>
 
 typedef struct maze
@@ -21,17 +22,18 @@ typedef struct maze
     int random;
 } maze_t;
 
-int my_strcmp(char const *s1, char const *s2);
+int my_str_isnum(char const *str);
 void create_imperfect(char **map, maze_t *gen);
 int init_imperfect(char *x, char *y, maze_t *gen);
 void algorithm_imperfect(char **map, int i, int j, maze_t *gen);
 char **generate_map(int x, int y, maze_t *gen);
-void display_map(char **map);
+void display_map(char **map, maze_t *gen);
 int random_number(int nb);
 int random_border(int nb);
 int init_perfect(char *x, char *y, maze_t *gen);
 void perfect_alea(char **map, maze_t *gen, int i, int j);
 void perfect_alea2(char **map, maze_t *gen, int i, int j);
+void perfect_alea3(char **map, maze_t *gen, int i, int j);
 void create_perfect(char **map, maze_t *gen);
 void random_perfect(maze_t *gen, char **map, int i, int j);
 char **generate_perfect(int x, int y, maze_t *gen);
