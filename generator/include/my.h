@@ -39,5 +39,7 @@ void random_perfect(maze_t *gen, char **map, int i, int j);
 char **generate_perfect(int x, int y, maze_t *gen);
 int count_stars(char **map, maze_t *gen, int i, int j);
 void map_perfect(maze_t *gen, char **map);
+void border_perfect1(char **map, int i, int j, maze_t *gen);
+void perfect_alea4(char **map, maze_t *gen, int i, int j);
 
 #endif

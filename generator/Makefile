@@ -8,6 +8,7 @@
 SRC	=	generate_map.c			\
 		imperfect_maze.c		\
 		perfect_maze.c			\
+		perfect_maze2.c			\
 		my_str_isnum.c			\
 		main.c
 

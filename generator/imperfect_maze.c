@@ -53,7 +53,7 @@ void print_alea(char **map, maze_t *gen, int i, int j)
     int count = count_stars(map, gen, i, j);
 
     if (count > 0) {
-        if (random == 1 || random == 3 || random == 4)
+        if (random == 1 || random == 3 || random == 4 || random == 2)
             map[i][j] = '*';
     }
 }
