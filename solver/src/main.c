@@ -14,15 +14,18 @@ int free_everything(maze_t *maze, int ret)
     return (ret);
 }
 
-int print_output(maze_t *maze, int res)
+int print_solved_maze(list_t *list, char **maze)
 {
-    if (!res) {
-        my_putstr("No solution\n");
-        return (res);
-    } else {
-        print_array(maze->arr);
-        return (res);
+    for (int j = 0; maze[j]; j++) {
+        for (int i = 0; maze[j][i]; i++) {
+            if (is_already_point(list, j, i))
+                putchar('o');
+            else
+                putchar(maze[j][i]);
+        }
+        putchar('\n');
     }
+    return (1);
 }
 
 int is_valid_maze(maze_t *maze)
@@ -32,28 +35,21 @@ int is_valid_maze(maze_t *maze)
     return (1);
 }
 
-int find_path(maze_t *maze, int y, int x)
-{
-    if (x == maze->x - 1 && y == maze->y - 1)
-        return (1);
-    if (x < 0 || y < 0 || x >= maze->x || y >= maze->y)
-        return (0);
-    if (maze->arr[y][x] == 'X')
-        return (0);
-    maze->arr[y][x] = 'o';
-    if (find_path(maze, y, x + 1) || find_path(maze, y + 1, x))
-        return (1);
-    if (find_path(maze, y, x - 1) || find_path(maze, y - 1, x))
-        return (1);
-    maze->arr[y][x] = '*';
-    return (0);
-}
-
 int solve_maze(maze_t *maze)
 {
+    list_t *list = NULL;
+    int ret = 0;
+
     if (!is_valid_maze(maze))
         return (0);
-    find_path(maze, 0, 0);
+    ret = find_path(maze, 0, 0, &list);
+    if (!ret) {
+        printf("No solution\n");
+        free_list(list);
+        return (0);
+    }
+    print_solved_maze(list, maze->arr);
+    free_list(list);
     return (0);
 }
 
@@ -66,7 +62,6 @@ int main(int ac, char **av)
     if (!load_maze(maze, av[1]))
         return (84);
     solve_maze(maze);
-    print_array(maze->arr);
     free_everything(maze, 0);
     return (0);
 }

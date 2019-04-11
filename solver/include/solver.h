@@ -28,15 +28,16 @@ typedef struct s_list
 {
     int y;
     int x;
+    struct s_list *next;
 } list_t;
 
-typedef struct s_solver
-{
-    int **arr;
-    list_t *path;
-} solver_t;
-
 int check_open(char *path);
+int print_list(list_t *list);
+int is_already_point(list_t *list, int y, int x);
+int find_path(maze_t *maze, int y, int x, list_t **list);
+int add_point(list_t **head, int y, int x);
+int delete_point(list_t **list);
+int free_list(list_t *list);
 int is_valid_line(char *line);
 int free_everything(maze_t *maze, int ret);
 int check_error_maze(char **maze);

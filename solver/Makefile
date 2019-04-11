@@ -9,7 +9,9 @@ SRC			=	src/main.c\
 				src/maze/load_maze.c\
 				src/maze/error_handling.c\
 				src/utils/error_handling.c\
-				src/utils/general_1.c
+				src/utils/general_1.c\
+				src/list/list.c\
+				src/algo/find_path.c
 
 NAME		=	solver
 
