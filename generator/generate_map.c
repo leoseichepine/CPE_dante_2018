@@ -31,7 +31,7 @@ char **generate_perfect(int x, int y, maze_t *gen)
 
 void complete_border(maze_t *gen, int i, int j, char **map)
 {
-    if (i == gen->y - 1 || i == 0 || j == 0 || j == gen->x - 1)
+    if (i == 0 || j == 0 || j == gen->x - 1)
         map[i][j] = '*';
 }
 

@@ -21,16 +21,14 @@ void perfect_alea3(char **map, maze_t *gen, int i, int j)
     if (j == 0 || (i == gen->y - 1))
         map[i][j] = '*';
     else if (map[i][j] == 'X') {
-        if (gen->count == 1)
-            if (gen->random == 1 || gen->random == 3 || gen->random == 4)
-                map[i][j] = '*';
+        perfect_alea4(map, gen, i, j);
     }
 }
 
 void perfect_alea2(char **map, maze_t *gen, int i, int j)
 {
-    if (gen->count == 1) {
-        if (gen->random == 1 || gen->random == 3 || gen->random == 4)
+    if (gen->count == 0) {
+        if (gen->random == 1)
             map[i][j] = '*';
     }
 }
@@ -43,9 +41,8 @@ void perfect_alea(char **map, maze_t *gen, int i, int j)
     gen->count = count_stars(map, gen, i, j);
     rand2 = random_border(4);
     if (rand2 == 1 || rand2 == 3) {
-        if (i == 0 || (j == gen->x - 1))
-            map[i][j] = '*';
-        else if (map[i][j] == 'X')
+        border_perfect1(map, i, j, gen);
+        if (map[i][j] == 'X')
             perfect_alea2(map, gen, i, j);
     } else
         perfect_alea3(map, gen, i, j);

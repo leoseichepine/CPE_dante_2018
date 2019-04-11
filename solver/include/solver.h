@@ -6,7 +6,7 @@
 */
 
 #ifndef _SOLVER_H_
-    #define _SOLVER_H_
+#define _SOLVER_H_
 
 #include <stddef.h>
 #include <string.h>
@@ -52,4 +52,4 @@ char *my_strncpy(char *str, int n);
 int my_putchar(char c);
 int my_putstr(char *str);
 
-    #endif //_SOLVER_H_
+#endif //_SOLVER_H_
