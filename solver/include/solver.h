@@ -33,6 +33,7 @@ typedef struct s_list
 
 int check_open(char *path);
 int print_list(list_t *list);
+int is_valid_maze(maze_t *maze);
 int is_already_point(list_t *list, int y, int x);
 int find_path(maze_t *maze, int y, int x, list_t **list);
 int add_point(list_t **head, int y, int x);

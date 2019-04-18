@@ -49,17 +49,22 @@ int find_path(maze_t *maze, int y, int x, list_t **list)
     add_point(list, y, x);
     if (is_solution(maze, y, x))
         return (1);
-    if (is_valid_point(maze, y, x + 1, list))
+    if (is_valid_point(maze, y, x + 1, list)) {
         if (find_path(maze, y, x + 1, list))
             return (1);
-    if (is_valid_point(maze, y + 1, x, list))
+    }
+    if (is_valid_point(maze, y + 1, x, list)) {
         if (find_path(maze, y + 1, x, list))
             return (1);
-    if (is_valid_point(maze, y, x - 1, list))
+    }
+    if (is_valid_point(maze, y, x - 1, list)) {
         if (find_path(maze, y, x - 1, list))
             return (1);
-    if (is_valid_point(maze, y - 1, x, list))
+    }
+    if (is_valid_point(maze, y - 1, x, list)) {
         if (find_path(maze, y - 1, x, list))
             return (1);
+    }
+    delete_point(list);
     return (0);
 }

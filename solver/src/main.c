@@ -14,24 +14,23 @@ int free_everything(maze_t *maze, int ret)
     return (ret);
 }
 
-int print_solved_maze(list_t *list, char **maze)
+char choose_carac(list_t *list, char **maze, int y, int x)
 {
-    for (int j = 0; maze[j]; j++) {
-        for (int i = 0; maze[j][i]; i++) {
-            if (is_already_point(list, j, i))
-                putchar('o');
-            else
-                putchar(maze[j][i]);
-        }
-        putchar('\n');
-    }
-    return (1);
+    if (is_already_point(list, y, x))
+        return ('o');
+    else
+        return (maze[y][x]);
 }
 
-int is_valid_maze(maze_t *maze)
+int print_solved_maze(list_t *list, maze_t *maze)
 {
-    if (maze->arr[0][0] != '*' || maze->arr[maze->y - 1][maze->x- 1] != '*')
-        return (0);
+    for (int y = 0; maze->arr[y]; y++) {
+        for (int x = 0; maze->arr[y][x]; x++) {
+            putchar(choose_carac(list, maze->arr, y, x));
+        }
+        if (y < maze->y - 1)
+            putchar('\n');
+    }
     return (1);
 }
 
@@ -48,16 +47,19 @@ int solve_maze(maze_t *maze)
         free_list(list);
         return (0);
     }
-    print_solved_maze(list, maze->arr);
+    print_solved_maze(list, maze);
     free_list(list);
     return (0);
 }
 
 int main(int ac, char **av)
 {
-    maze_t *maze = malloc(sizeof(maze_t));
+    maze_t *maze = NULL;
 
     if (!check_args(ac, av))
+        return (84);
+    maze = malloc(sizeof(maze_t));
+    if (!maze)
         return (84);
     if (!load_maze(maze, av[1]))
         return (84);

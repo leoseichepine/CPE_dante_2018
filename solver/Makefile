@@ -11,7 +11,8 @@ SRC			=	src/main.c\
 				src/utils/error_handling.c\
 				src/utils/general_1.c\
 				src/list/list.c\
-				src/algo/find_path.c
+				src/algo/find_path.c\
+				src/utils/my_strlen.c
 
 NAME		=	solver
 
