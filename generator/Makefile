@@ -1,35 +1,42 @@
 ##
 ## EPITECH PROJECT, 2018
-## Day10
+## makefile csfml
 ## File description:
-## makefile
+## makefile csfml
 ##
 
-SRC	=	generate_map.c			\
-		imperfect_maze.c		\
-		perfect_maze.c			\
-		perfect_maze2.c			\
-		my_str_isnum.c			\
-		main.c
+SRC		=	src/main.c\
+			src/setup.c\
+			src/utils/general_1.c\
+			src/utils/print.c
 
-OBJ	=	$(SRC:.c=.o)
+NAME		=	generator
 
-NAME	=	generator
+OBJ		=	$(SRC:.c=.o)
 
-INCLUDE = 	-I./include/my.h
+CFLAGS		=	-Wall -Wextra -Iinclude
 
-all :		$(NAME) copy
+INCLUDE		=	-I./include/
 
-$(NAME):	$(OBJ)
-		gcc -g -o $(NAME) $(OBJ) $(INCLUDE)
+LIBFLAGS	=	-Llib/my -lmy
 
-copy :
-	cp $(NAME) ../tournament
+all:			$(NAME) clean
+
+debug:
+			gcc -o  $(NAME) $(SRC) $(CFLAGS) -g
+
+$(NAME):		$(OBJ)
+			gcc -g -o $(NAME) $(OBJ) $(INCLUDE) $(CFLAGS)
+
+copy:
+			cp $(NAME) ../tournament
 
 clean:
-		rm -f $(OBJ)
+			rm -f $(OBJ)
 
-fclean:		clean
-		rm -f $(NAME)
+fclean:			clean
+			rm -f $(NAME)
 
-re: 		fclean all
+re:			fclean all
+
+.PHONY:			all clean fclean re
